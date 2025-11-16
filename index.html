@@ -1,0 +1,22 @@
+<script>
+  // Анимация появления элементов при скролле
+  const fadeElements = document.querySelectorAll('.fade-in, .slide-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.2 });
+  fadeElements.forEach(el => observer.observe(el));
+
+  // Модальные функции
+  function openModal(id){ document.getElementById(id).style.display='block'; }
+  function closeModal(id){ document.getElementById(id).style.display='none'; }
+  window.onclick = function(event){ if(event.target.classList.contains('modal')) event.target.style.display='none'; }
+
+  // Scroll To Top
+  window.onscroll = ()=>{ const btn = document.getElementById("topBtn"); (document.body.scrollTop>300 || document.documentElement.scrollTop>300)? btn.style.display="block" : btn.style.display="none"; };
+  function topFunction(){ window.scrollTo({top:0, behavior:'smooth'}); }
+</script>
